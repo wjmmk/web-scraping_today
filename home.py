@@ -1,5 +1,9 @@
+from dotenv import load_dotenv
+import os
 import requests
 from bs4 import BeautifulSoup
+
+load_dotenv()
 
 """ # 1. Fetch the page
 url = "https://books.toscrape.com/"
@@ -42,8 +46,8 @@ for book in books:
 for book in results:
     print(f"{book['title']} | {book['price']} | {book['rating']} stars") """
 
-BASE_URL = "https://books.toscrape.com/catalogue/"
-start_url = "https://books.toscrape.com/catalogue/page-1.html"
+base_url = os.getenv("BASE_URL")
+start_url = os.getenv("START_URL")
 
 all_books = []
 url = start_url
@@ -62,8 +66,8 @@ while url:
 
     # Check for a "next" button and follow it
     next_btn = soup.select_one("li.next a")
-    url = BASE_URL + next_btn["href"] if next_btn else None
+    url = base_url + next_btn["href"] if next_btn else None
 
 print(f"Scraped {len(all_books)} books total.")
-for book in all_books:
-    print(f"{book['title']} | {book['price']} | {book['rating']} stars")
+""" for book in all_books:
+    print(f"{book['title']} | {book['price']} | {book['rating']} stars") """
