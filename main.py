@@ -1,6 +1,6 @@
+from dotenv import load_dotenv
 import os
 import requests
-from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
@@ -16,6 +16,9 @@ def get_weather(city: str) -> str:
         "units": "metric",
         "lang": "es"
     }
+
+    if not OPENWEATHER_API_KEY:
+        raise ValueError("OPENWEATHER_API_KEY no está definida en el .env")
     
     response = requests.get(url, params=params)
 
