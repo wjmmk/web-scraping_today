@@ -6,6 +6,10 @@ import time
 
 load_dotenv()
 
+""" 
+ Esta es una implementacion Asincrona de una app Web~Scraping. 
+ En esta primera parte se accede a la API de spidra.io & se obtiene el 'job_id'
+"""
 API_KEY = os.getenv("SPIDRAIO_KEY")
 
 payload = {
@@ -24,7 +28,7 @@ response = requests.post(
 )
 
 if not API_KEY:
-    raise ValueError("API KEY no cargada desde .env")
+    raise ValueError("No se pudo cargar la API_KEY desde .env")
 
 print(response.status_code)
 print(response.text)
@@ -33,7 +37,7 @@ data = response.json()
 print(json.dumps(data, indent=2))
 
 
-##### Se confirma la peticion asincrona a la API enviando el "jod_id".
+##### Se confirma la peticion ASINCRONA a la API enviando el "jod_id".
 job_id = data["jobId"]
 
 url = f"https://api.spidra.io/api/scrape/{job_id}"
