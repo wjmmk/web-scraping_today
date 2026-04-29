@@ -13,7 +13,7 @@ load_dotenv()
 API_KEY = os.getenv("SPIDRAIO_KEY")
 
 payload = {
-    "urls": [{"url": "https://books.toscrape.com/"}],
+    "urls": [{"url": "https://teslo-shop-angular.netlify.app/#/gender/men"}],
     "prompt": "Extract all books on this page. For each book, return the title, price, and star rating as a number from 1 to 5.",
     "output": "json"
 }
